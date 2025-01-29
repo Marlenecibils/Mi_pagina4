@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Vos ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: black;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .boton {
+            position: absolute;
+            background: pink;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px white;
+            transition: transform 0.2s;
+        }
+        .boton:hover {
+            transform: scale(1.1);
+        }
+        .mensaje {
+            display: none;
+            position: absolute;
+            background: rgba(255, 20, 147, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 20px;
+            max-width: 80%;
+            box-shadow: 0 0 15px white;
+        }
+        .corazon {
+            position: absolute;
+            color: red;
+            font-size: 25px;
+            animation: flotar 5s infinite ease-in-out;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-50px); opacity: 0.7; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="boton" onclick="mostrarMensaje()">Te voy a decir alg, sii¿?</button>
+
+    <div class="mensaje" id="mensaje">
+        Ya te dije ya que sos hermosa? Que te admiro un montón y que no hay una chica que admire más aparte que Lisa. 
+        Sos tan hermosa y en serio te voy a dar todas mis redes sociales, pero si pensás que es súper rápido dame tiempo 
+        y te voy a demostrar que no todo puede ser así. Yo sé que resulte ser una porquería, puede que sí y puede que no, pero no hay un momento dónde no te piense,yo sé qué no nos conocemos y es algo ridículo porque desde el primer momento que te vi me flechaste mi todo (Mi corazón, mis ojos y mi alma ) la verdad que tengo 15 y en un mes cumplo 16 pero no es tan mucho, dame tiempo si pensas que soy así de mala onda porqué no lo soy, si te di esa imagínen que le extraño a mi ex voy a hacer de todo para que veas que no es más asi 
+         te voy a mostrar que no todo puede ser así. No quiero que me veas como una acosadora o alguien súper rara pero desde el primer momento que vi el video te admiré y muchísimo, seguro es algo patético pero en mi parecer no. En serio me pareces una chica súper linda, y obviamente atractiva y es en serio, ya depende de vos creo pero si me querés dar la oportunidad de conocerme mejor estaría algo bueno, no? Y así, en serio hay muchas cosas más que decir pero solo esto porqué no quiero sacarte de onda. Gracias 🫂 
+    </div>
+
+    <audio id="musica" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function crearCorazon() {
+            const corazon = document.createElement("div");
+            corazon.classList.add("corazon");
+            corazon.innerHTML = "❤️🗣️";
+            document.body.appendChild(corazon);
+
+            corazon.style.left = Math.random() * 100 + "vw";
+            corazon.style.top = Math.random() * 100 + "vh";
+            corazon.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+            setTimeout(() => {
+                corazon.remove();
+            }, 5000);
+        }
+
+        setInterval(crearCorazon, 300);
+
+        function mostrarMensaje() {
+            document.getElementById("mensaje").style.display = "block";
+            document.getElementById("musica").play();
+        }
+    </script>
+
+</body>
+</html>
