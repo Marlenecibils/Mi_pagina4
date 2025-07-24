@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mensaje Interactivo</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe4e1;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
+    text-align: center;
+    max-width: 400px;
+  }
+  p {
+    font-size: 1.4rem;
+    color: #b03060;
+    margin-bottom: 30px;
+  }
+  button {
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    margin: 0 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ff69b4;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  button:disabled {
+    background: #ffc0cb;
+    cursor: not-allowed;
+  }
+  button:hover:not(:disabled) {
+    background-color: #ff1493;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <p id="mensaje">Nde tembola te puedo pio conquistar?</p>
+    <button id="btnSi">Sí</button>
+    <button id="btnNo" disabled>No</button>
+  </div>
+
+<script>
+  const btnSi = document.getElementById('btnSi');
+  const btnNo = document.getElementById('btnNo');
+  const mensaje = document.getElementById('mensaje');
+
+  btnSi.addEventListener('click', () => {
+    mensaje.textContent = "¡Gracias por decir sí! Ahora ya podés tocar 'No' si querés.";
+    btnNo.disabled = false;
+    btnSi.disabled = true;
+  });
+
+  btnNo.addEventListener('click', () => {
+    mensaje.textContent = "Bueno, me voy a jukar nmas ya 😅";
+    btnSi.disabled = true;
+    btnNo.disabled = true;
+  });
+</script>
+</body>
+</html>
