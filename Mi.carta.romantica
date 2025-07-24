@@ -1,0 +1,159 @@
+mport turtle
+import time
+import threading
+
+screen = turtle.Screen()
+screen.bgcolor("black")
+screen.setup(width=900, height=600)
+
+def mostrar_aviso():
+aviso = turtle.Turtle()
+aviso.hideturtle()
+aviso.penup()
+aviso.color("white")
+aviso.goto(0, 0)
+aviso.write("🔄 Girá tu teléfono para verlo mejor 🔄", align="center", font=("Times New Roman", 9, "bold"))
+time.sleep(3)
+aviso.clear()
+
+mostrar_aviso()
+
+tree_turtle = turtle.Turtle()
+tree_turtle.speed(0)
+tree_turtle.pensize(2)
+tree_turtle.color("green")
+tree_turtle.hideturtle()
+
+def draw_tree(size):
+if size < 10:
+return
+tree_turtle.forward(size)
+tree_turtle.color("orange")
+tree_turtle.circle(2)
+tree_turtle.color("brown")
+tree_turtle.left(30)
+draw_tree(size * 0.75)
+tree_turtle.right(60)
+draw_tree(size * 0.75)
+tree_turtle.left(30)
+tree_turtle.backward(size)
+
+tree_turtle.penup()
+tree_turtle.goto(-150, -150)
+tree_turtle.setheading(90)
+tree_turtle.pendown()
+draw_tree(70)
+
+text_turtle = turtle.Turtle()
+text_turtle.hideturtle()
+text_turtle.penup()
+text_turtle.color("white")
+text_turtle.speed(0)
+
+lyrics = [
+"No soy lo que creés,",
+"solo quiero que me veas,",
+"que me conozcas de verdad,",
+"y que sientas mi alma entera.",
+"",
+"Si me das una oportunidad,",
+"te juro que puedo enamorarte,",
+"con paciencia y con verdad,",
+"y sin miedo a fallarte.",
+
+"(NO LE EXTRAÑO HINA MAS A MI EX)"
+
+]
+
+def escribir_letra_por_letra(linea, x, y):
+text_turtle.goto(x, y)
+for letra in linea:
+text_turtle.write(letra, font=("Times New Roman", 6,"normal"))
+text_turtle.forward(11)
+time.sleep(0.15)
+
+def escribir_todo():
+x = 150
+y = 200
+for linea in lyrics:
+escribir_letra_por_letra(linea, x, y)
+y -= 35
+time.sleep(2.5)  # Espera más tiempo para que se vea el corazón y la carta
+borrar_y_mostrar_final()
+
+carta = None
+mensaje_abierto = False
+
+def borrar_y_mostrar_final():
+global carta
+tree_turtle.clear()
+text_turtle.clear()
+time.sleep(0.5)
+
+heart = turtle.Turtle()  
+heart.hideturtle()  
+heart.color("red")  
+heart.speed(0)  
+heart.penup()  
+heart.goto(0, -100)  
+heart.pendown()  
+heart.begin_fill()  
+heart.setheading(140)  
+heart.forward(180)  
+heart.circle(-90, 200)  
+heart.left(120)  
+heart.circle(-90, 200)  
+heart.forward(180)  
+heart.end_fill()  
+
+carta = turtle.Turtle()  
+carta.hideturtle()  
+carta.speed(0)  
+carta.penup()  
+carta.goto(-50, 0)  
+carta.color("white")  
+carta.begin_fill()  
+carta.pendown()  
+for _ in range(2):  
+    carta.forward(100)  
+    carta.left(90)  
+    carta.forward(60)  
+    carta.left(90)  
+carta.end_fill()  
+
+carta.penup()  
+carta.goto(0, 20)  
+carta.color("black")  
+carta.write("Tocá acá", align="center", font=("Times New Roman", 14, "bold"))  
+
+screen.onclick(abrir_carta)
+
+def abrir_carta(x, y):
+global carta, mensaje_abierto
+if carta is None:
+return
+if mensaje_abierto:
+return
+if -50 < x < 50 and 0 < y < 60:
+mensaje_abierto = True
+carta.clear()
+carta.penup()
+carta.goto(-40, 0)
+carta.color("lightyellow")
+carta.begin_fill()
+carta.pendown()
+for _ in range(2):
+carta.forward(80)
+carta.left(90)
+carta.forward(60)
+carta.left(90)
+carta.end_fill()
+carta.penup()
+carta.goto(0, 10)
+carta.color("black")
+carta.write("¿Te puedo pio conquistar?", align="center", font=("Times New Roman", 14, "bold"))
+
+threading.Thread(target=escribir_todo).start()
+
+turtle.done()
+
